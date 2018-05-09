@@ -1,7 +1,7 @@
 var express = require('express'),
 app = express(),
 port = process.env.PORT || 3000;
-var serverShit = require('./votesForEntity.js');
+var voteServer = require('./votesForEntity.js');
 var results = require('./config').results;
 
 var object1ToVoteFor = {
@@ -22,9 +22,9 @@ var object3ToVoteFor = {
 
 
 
-serverShit(object1ToVoteFor);
-serverShit(object2ToVoteFor);
-serverShit(object3ToVoteFor);
+voteServer(object1ToVoteFor);
+voteServer(object2ToVoteFor);
+voteServer(object3ToVoteFor);
 
 
 app.get('/', (req, res)=> {
@@ -33,7 +33,7 @@ app.get('/', (req, res)=> {
 		<h1> Votes - Server exercise</h1>
 		</body>
 		</html>`);
-	res.send(results.join("<br>"));
+	res.send(results.join());
 
 });
 
@@ -49,7 +49,4 @@ app.get('/getall',(req,res)=>{
 
 
 
-
-
 app.listen(port);
-console.log(`listening on port ${port}`);
